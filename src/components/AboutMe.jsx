@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 import ViewFooter from "./ViewFooter";
-import avatarSvg from "../assets/svgs/avatar.svg";
+import avatar from "../assets/Jpegs/Me.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -70,7 +70,7 @@ const AboutMe = () => {
                     </div>
                     {/* Imagen estática dentro del marco */}
                     <img
-                        src={avatarSvg}
+                        src={avatar}
                         alt="avatar"
                         className={`${
                             isTallerThan700 ? "md:w-[14vw]" : "md:w-[20vh]"
