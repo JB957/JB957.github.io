@@ -1,3 +1,5 @@
+import { projects } from "./data/projects";
+import ProjectView from "./components/ProjectView";
 import { useMediaQuery } from "react-responsive";
 import BmoPage from "./components/BmoPage";
 // App.jsx
@@ -24,6 +26,9 @@ function App() {
             <Route path="/credits-view" element={isMobile ? <BmoPage /> : <CreditsView />} />
             <Route path="/github-view" element={<BmoPage />} />
             <Route path="/source-view" element={<BmoPage />} />
+            {projects.map((project) => (
+                <Route key={project.path} path={project.path} element={isMobile ? <BmoPage /> : <ProjectView project={project} />} />
+            ))}
         </Routes>
     );
 }

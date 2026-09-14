@@ -1,3 +1,5 @@
+import { projects } from "../data/projects";
+import ProjectChannel from "./ProjectChannel";
 import EmptyChannel from "./EmptyChannel";
 import DiscChannel from "./DiscChannel";
 import BannerChannel from "./BannerChannel";
@@ -94,6 +96,11 @@ export default function MainMenu() {
                     >
                         <CodeChannel />
                     </Link>
+                    {projects.map((project) => (
+                        <Link key={project.path} to={project.path} className="md:w-1/4 md:p-[0.4vh]" aria-label={`${project.title} — ${project.role}`}>
+                            <ProjectChannel project={project} />
+                        </Link>
+                    ))}
                     <Link
                         to={"/credits-view"}
                         className="md:w-1/4 md:p-[0.4vh]"
@@ -102,12 +109,6 @@ export default function MainMenu() {
                     </Link>
                     {isMdOrLarger && (
                         <>
-                            <div className="md:w-1/4 md:p-[0.4vh]">
-                                <EmptyChannel />
-                            </div>
-                            <div className="md:w-1/4 md:p-[0.4vh]">
-                                <EmptyChannel />
-                            </div>
                             <div className="md:w-1/4 md:p-[0.4vh]">
                                 <EmptyChannel />
                             </div>

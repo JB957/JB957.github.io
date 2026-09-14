@@ -1,3 +1,4 @@
+import { projects } from "../data/projects";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ import avatar from "../assets/Jpegs/Me.png";
 import "./BmoMenu.css";
 
 const pages = {
+    ...Object.fromEntries(projects.map((project) => [project.path, { ...project, action: "OPEN", external: true }])),
     "/": { title: "Hello, friend!", action: "PLAY", href: "/main-menu" },
     "/about-me": { title: "About me", action: "CV", href: "/cv.pdf", external: true },
     "/work-experience": { title: "Experience", action: "CV", href: "/cv.pdf", external: true },
@@ -33,6 +35,7 @@ export default function BmoPage() {
     const [playing, setPlaying] = useState(true);
     const isCredits = pathname === "/credits-view";
     const page = pages[pathname];
+    const project = projects.find((item) => item.path === pathname);
     const reducedMotion = useMediaQuery({ query: "(prefers-reduced-motion: reduce)" });
 
     useEffect(() => {
@@ -90,8 +93,9 @@ export default function BmoPage() {
                     {pathname === "/linkedin-view" && <><img className="bmo-avatar" src={avatar} alt="Joseph Bird" /><h2>Let’s connect.</h2><p>Visit my LinkedIn profile to learn more about my experience, projects, and professional journey.</p></>}
                     {pathname === "/github-view" && <><div className="bmo-face" aria-hidden="true">{'{ }'}</div><h2>JB957 on GitHub</h2><p>Explore my repositories, projects, and code.</p></>}
                     {pathname === "/source-view" && <><div className="bmo-face" aria-hidden="true">{'</>'}</div><h2>Behind the portfolio</h2><p>Browse the source code for this website on GitHub.</p><p>Built with React and styled with Tailwind CSS.</p></>}
+                    {project && <article className="bmo-card"><span className="bmo-date">RITSEC · {project.role}</span><h2>{project.category}</h2><p>{project.description}</p></article>}
                     {isCredits && <div className="bmo-credits-text">{crawlText}</div>}
-                    {page.href && (page.external ? <a className="bmo-page-link" ref={actionLink} href={page.href} target="_blank" rel="noopener noreferrer">{page.action === "CV" ? "View resume" : page.action === "CODE" ? "Explore GitHub" : `Open ${page.title}`} ↗</a> : <Link className="bmo-page-link" ref={actionLink} to={page.href}>Let’s play →</Link>)}
+                    {page.href && (page.external ? <a className="bmo-page-link" ref={actionLink} href={page.href} target="_blank" rel="noopener noreferrer">{project ? "View repository" : page.action === "CV" ? "View resume" : page.action === "CODE" ? "Explore GitHub" : `Open ${page.title}`} ↗</a> : <Link className="bmo-page-link" ref={actionLink} to={page.href}>Let’s play →</Link>)}
                 </section>
                 <div className="bmo-slot-row" aria-hidden="true"><div className="bmo-slot" /><div className="bmo-light" /></div>
                 <BmoControls onPrevious={() => scroll(-1)} onNext={() => scroll(1)} onBack={() => navigate("/main-menu")} onTop={top} onAction={activate} actionText={actionText} actionLabel={isCredits ? `${playing ? "Pause" : "Play"} credits` : page.action === "CV" ? "Open resume" : `Open ${page.title}`} />
