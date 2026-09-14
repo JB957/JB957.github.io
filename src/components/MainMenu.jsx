@@ -30,6 +30,9 @@ export default function MainMenu() {
             }`}
         >
             <div className="flex-grow md:h-[100vh] md:overflow-auto md:pb-0 pb-20">
+                <p className="mx-auto mt-4 max-w-xl rounded-full border border-sky-200 bg-white/90 px-5 py-2 text-center font-sans text-sm text-slate-600">
+                    Wii on desktop, BMO on mobile. Open this site on your phone to try the other design!
+                </p>
                 <div className="md:flex flex-wrap xl:px-32 md:pt-4 p-3 pt-14 justify-center md:pb-24">
                     <Link to={"/about-me"} className="md:w-1/4 md:p-[0.4vh]">
                         <DiscChannel />

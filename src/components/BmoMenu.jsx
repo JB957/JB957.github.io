@@ -64,6 +64,7 @@ export default function BmoMenu() {
                 />
                 <div className="bmo-bottom"><div className="bmo-speakers" aria-hidden="true"><i /><i /></div><span>BMO</span></div>
                 <p className="bmo-hint">Scroll & tap, or use the D-pad + GO</p>
+                <p className="bmo-version-note">BMO on mobile, Wii on desktop. Visit on a computer to try the other design!</p>
                 <span className="sr-only" role="status">Selected: {entries[selected].label}</span>
             </div>
         </main>
