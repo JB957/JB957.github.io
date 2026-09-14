@@ -12,39 +12,21 @@ const WorkExperienceView = () => {
     const workExperiences = [
         {
             id: 1,
-            year: "Feb 25 - Present",
-            company: "ASF",
-            position: "Full Stack Developer",
+            year: "Aug 22 - Sep 25",
+            company: "Fire Crust",
+            position: "Manager",
             description:
-                "Development of a management system for a multinational oil & gas company using React, Material UI, Java Spring Boot, and Oracle DB. Created interactive visualizations and contributed to frontend and backend tasks.",
+                "Managed a team of 3-5 Employees to open a store every morning and ensure effiecent and quality preperation of food.",
             color: "bg-green-600",
         },
         {
             id: 2,
-            year: "Feb 25 - Sep 25",
-            company: "Freelance - Terraoliva",
-            position: "Frontend Developer & Project Lead",
+            year: "Jan 26 - Sep 26",
+            company: "Factory Mutual Insurance Company",
+            position: "Software Engineer",
             description:
-                "Led the development of a ticket sales system for an event venue. Defined roadmap and Gantt, negotiated with the client, and built the frontend for both web (React) and mobile (React Native). Coordinated backend development in Ruby on Rails.",
+                "Worked full time across 4 different teams developing automation tools and applications to improve the efficiency of the company.",
             color: "bg-yellow-600",
-        },
-        {
-            id: 3,
-            year: "Oct 24 - Feb 25",
-            company: "Factor IT",
-            position: "Full Stack Developer",
-            description:
-                "Worked on a secured loan system for BBVA using React, Lit, Web Components, and Java Spring Boot. Collaborated with an international team and applied version control with Git.",
-            color: "bg-blue-600",
-        },
-        {
-            id: 4,
-            year: "Jan 24 - Apr 24",
-            company: "OpenDev Pro",
-            position: "Functional Analyst",
-            description:
-                "Collaborated with clients to define functional requirements. Wrote user stories in Jira and created flow diagrams to support the development of a custom software product.",
-            color: "bg-purple-600",
         },
     ];
 

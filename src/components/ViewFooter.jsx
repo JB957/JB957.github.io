@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import PropTypes from "prop-types";
 import startButton from "../assets/svgs/start-button.svg";
 import wiiMenuButton from "../assets/svgs/wii-menu-button.svg";
 
-const ViewFooter = () => {
+const ViewFooter = ({ onStart }) => {
     const handleClick = () => {
+        if (onStart) {
+            onStart();
+            return;
+        }
+
         window.open("/cv.pdf", "_blank");
     };
 
@@ -18,7 +24,7 @@ const ViewFooter = () => {
             } py-8 md:gap-36 gap-2`}
         >
             <Link to={"/main-menu"}>
-                <div className="rounded-full border-2 border-[#00C4FF]">
+                <div className="rounded-full border-2 border-[#00C4FF] transform-gpu transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-[1.04] focus-visible:-translate-y-1 focus-visible:scale-[1.04]">
                     <img
                         src={wiiMenuButton}
                         alt="wiiMenuButton"
@@ -27,8 +33,17 @@ const ViewFooter = () => {
                 </div>
             </Link>
             <div
-                className="rounded-full border-2 border-[#00C4FF] cursor-pointer"
+                className="rounded-full border-2 border-[#00C4FF] cursor-pointer transform-gpu transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-[1.04] focus-visible:-translate-y-1 focus-visible:scale-[1.04]"
                 onClick={handleClick}
+                onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        handleClick();
+                    }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Press Start"
             >
                 <img
                     src={startButton}
@@ -38,6 +53,10 @@ const ViewFooter = () => {
             </div>
         </footer>
     );
+};
+
+ViewFooter.propTypes = {
+    onStart: PropTypes.func,
 };
 
 export default ViewFooter;

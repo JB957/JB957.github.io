@@ -6,6 +6,8 @@ import WarningMenu from "./components/WarningMenu";
 import AboutMe from "./components/AboutMe";
 import TechnologiesView from "./components/TechnologiesView";
 import WorkExperienceView from "./components/WorkExperienceView";
+import LinkedinView from "./components/LinkedinView";
+import CreditsView from "./components/Credits-View";
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="/about-me" element={<AboutMe />} />
             <Route path="/technologies-view" element={<TechnologiesView />} />
             <Route path="/work-experience" element={<WorkExperienceView />} />
+            <Route path="/linkedin-view" element={<LinkedinView />} />
+            <Route path="/credits-view" element={<CreditsView />} />
         </Routes>
     );
 }

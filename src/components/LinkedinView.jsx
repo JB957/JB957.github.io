@@ -5,7 +5,7 @@ import avatar from "../assets/Jpegs/Me.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const AboutMe = () => {
+const LinkedinView = () => {
     const avatarRef = useRef();
     const frameRef = useRef();
     const textRef = useRef();
@@ -50,10 +50,14 @@ const AboutMe = () => {
         });
     });
 
+    const openLinkedIn = () => {
+        window.open("https://www.linkedin.com/in/joey-bird957", "_blank");
+    };
+
     return (
-        <div className="flex flex-col h-screen w-full bg-orange-200">
+        <div className="flex flex-col h-screen w-full bg-blue-200">
             <div
-                className={`flex flex-col flex-grow justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12 bg-gradient-to-r from-orange-100 to-orange-200 rounded-lg shadow-lg h-full pb-20 sm:pb-36 ${isTallerThan600 ? "md:pb-48 lg:pb-64" : "md:pb-[30vh] lg:pb-[30vh]"}`}
+                className={`flex flex-col flex-grow justify-center items-center p-4 sm:p-6 md:p-8 lg:p-12 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg shadow-lg h-full pb-20 sm:pb-36 ${isTallerThan600 ? "md:pb-48 lg:pb-64" : "md:pb-[30vh] lg:pb-[30vh]"}`}
             >
                 {/* Marco giratorio y avatar */}
                 <div className="relative mb-4 sm:mb-8 flex justify-center items-center">
@@ -64,7 +68,7 @@ const AboutMe = () => {
                             isTallerThan700
                                 ? "md:w-[16vw] md:h-[16vw]"
                                 : "md:w-[23vh] md:h-[23vh]"
-                        } rounded-full border-t-4 border-orange-600 flex justify-center items-center`}
+                        } rounded-full border-t-4 border-blue-600 flex justify-center items-center`}
                     >
                         {" "}
                     </div>
@@ -85,24 +89,24 @@ const AboutMe = () => {
                     ref={textRef}
                 >
                     <p className="text-lg sm:text-xl md:text-[2vw] mb-2 sm:mb-4 md:mb-6 leading-relaxed">
-                        Hi, my name is Joseph. I&apos;m a third-year cybersecurity student at Rochester Institute of Technology. My passion lies in DevOps and cloud computing. I have a strong interest in learning new technologies and applying them to real-world problems. I am always looking for new challenges and opportunities to grow as a professional.
+                        Visit my LinkedIn profile to learn more about my experience, projects, and professional journey.
                     </p>
                     <p className="text-lg sm:text-xl md:text-[2vw] pt-3">
                         <span
                             className="text-slate-600 sm:text-2xl md:text-[2.8vw] font-rodin font-bold animate-pulse"
                             ref={startRef}
                         >
-                            Press &quot;Start&quot; to view my Resume.
+                            Press &quot;Start&quot; to visit my LinkedIn profile.
                         </span>{" "}
                     </p>
                 </div>
             </div>
 
             <div className="mt-auto">
-                <ViewFooter />
+                <ViewFooter onStart={openLinkedIn} />
             </div>
         </div>
     );
 };
 
-export default AboutMe;
+export default LinkedinView;

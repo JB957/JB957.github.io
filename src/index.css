@@ -131,6 +131,61 @@ body {
     transition: border-color 0.2s ease-in-out;
 }
 
+.credits-stage {
+    background-color: #020204;
+    background-image:
+        radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 72% 14%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 45% 68%, rgba(255, 255, 255, 0.6) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 88% 82%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.5px);
+    background-size: 240px 180px, 310px 220px, 370px 260px, 290px 210px;
+}
+
+.credits-crawl-window {
+    perspective: 100dvh;
+    perspective-origin: 50% 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+
+.credits-crawl-plane {
+    position: absolute;
+    /* Extend the tilted plane so its projected top reaches the screen edge. */
+    inset: -150% 0 0;
+    overflow: hidden;
+    transform: rotateX(28deg);
+    transform-origin: 50% 100%;
+}
+
+.credits-crawl {
+    /* Begin above the footer so the opening line is visible immediately. */
+    --crawl-start: -50dvh;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: min(78vw, 900px);
+    color: #ffc928;
+    font-size: clamp(1.15rem, 2.4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: pre-wrap;
+    transform: translateX(-50%) translateY(var(--crawl-start));
+    animation: credits-crawl var(--crawl-duration, 180s) linear infinite;
+    text-shadow: 0 0 5px rgba(255, 201, 40, 0.35);
+}
+
+@keyframes credits-crawl {
+    from {
+        transform: translateX(-50%) translateY(var(--crawl-start));
+    }
+    to {
+        transform: translateX(-50%) translateY(calc(-100% - 250dvh));
+    }
+}
+
 @keyframes blink {
     0%,
     50%,

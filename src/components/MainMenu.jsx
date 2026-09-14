@@ -12,6 +12,7 @@ import MmFooter from "./MmFooter";
 import MmFooterMobile from "./MmFooterMobile";
 import { useMediaQuery } from "react-responsive";
 import WorkExperienceChannel from "./WorkExperienceChannel";
+import CreditsChannel from "./creditsChannel";
 
 export default function MainMenu() {
     const [fadeIn, setFadeIn] = useState(false);
@@ -45,11 +46,10 @@ export default function MainMenu() {
                         <TechnologiesChannel />
                     </Link>
                     <Link
-                        to={"https://www.linkedin.com/in/tobiasechenique/"}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        to={"/linkedin-view"}
                         className="md:w-1/4 md:p-[0.4vh]"
                     >
+
                         <BannerChannel
                             image={linkedinSvg}
                             legend={"LinkedIn Profile"}
@@ -57,7 +57,7 @@ export default function MainMenu() {
                         />
                     </Link>
                     <Link
-                        to={"https://github.com/tobieche110"}
+                        to={"https://github.com/JB957"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="md:w-1/4 md:p-[0.4vh]"
@@ -68,7 +68,7 @@ export default function MainMenu() {
                             classes={"animate-bounce"}
                         />
                     </Link>
-                    <Link
+                    {/* <Link
                         to={
                             "https://github.com/tobieche110/algoritmo-paneles-acusticos"
                         }
@@ -81,14 +81,20 @@ export default function MainMenu() {
                             legend={"Featured Project"}
                             classes={"animate-spin-slower"}
                         />
-                    </Link>
+                    </Link> */}
                     <Link
-                        to={"https://github.com/tobieche110/wii-portfolio"}
+                        to={"https://github.com/JB957/JB957.github.io"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="md:w-1/4 md:p-[0.4vh]"
                     >
                         <CodeChannel />
+                    </Link>
+                    <Link
+                        to={"/credits-view"}
+                        className="md:w-1/4 md:p-[0.4vh]"
+                    >
+                        <CreditsChannel />
                     </Link>
                     {isMdOrLarger && (
                         <>
