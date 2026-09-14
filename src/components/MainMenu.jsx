@@ -7,9 +7,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CodeChannel from "./CodeChannel";
 import TechnologiesChannel from "./TechnologiesChannel";
-import starSvg from "../assets/svgs/star.svg";
 import MmFooter from "./MmFooter";
-import MmFooterMobile from "./MmFooterMobile";
+import BmoMenu from "./BmoMenu";
 import { useMediaQuery } from "react-responsive";
 import WorkExperienceChannel from "./WorkExperienceChannel";
 import CreditsChannel from "./creditsChannel";
@@ -21,6 +20,8 @@ export default function MainMenu() {
     useEffect(() => {
         setFadeIn(true);
     }, []);
+
+    if (!isMdOrLarger) return <BmoMenu />;
 
     return (
         <div
@@ -118,7 +119,7 @@ export default function MainMenu() {
                 </div>
             </div>
             <div className="mt-auto">
-                {isMdOrLarger ? <MmFooter /> : <MmFooterMobile />}
+                <MmFooter />
             </div>
         </div>
     );

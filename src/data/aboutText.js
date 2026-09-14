@@ -1,0 +1,1 @@
+export const aboutText = "Hi, my name is Joseph. I'm a third-year cybersecurity student at Rochester Institute of Technology. My passion lies in DevOps and cloud computing. I have a strong interest in learning new technologies and applying them to real-world problems. I am always looking for new challenges and opportunities to grow as a professional.";

@@ -1,3 +1,4 @@
+import { aboutText } from "../data/aboutText";
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 import ViewFooter from "./ViewFooter";
@@ -85,7 +86,7 @@ const AboutMe = () => {
                     ref={textRef}
                 >
                     <p className="text-lg sm:text-xl md:text-[2vw] mb-2 sm:mb-4 md:mb-6 leading-relaxed">
-                        Hi, my name is Joseph. I&apos;m a third-year cybersecurity student at Rochester Institute of Technology. My passion lies in DevOps and cloud computing. I have a strong interest in learning new technologies and applying them to real-world problems. I am always looking for new challenges and opportunities to grow as a professional.
+                        {aboutText}
                     </p>
                     <p className="text-lg sm:text-xl md:text-[2vw] pt-3">
                         <span

@@ -1,3 +1,5 @@
+import { useMediaQuery } from "react-responsive";
+import BmoPage from "./components/BmoPage";
 // App.jsx
 import { Route, Routes } from "react-router-dom"; // Importa Routes
 import "./App.css";
@@ -10,15 +12,18 @@ import LinkedinView from "./components/LinkedinView";
 import CreditsView from "./components/Credits-View";
 
 function App() {
+    const isMobile = useMediaQuery({ maxWidth: 767 });
     return (
         <Routes>
             <Route path="/main-menu" element={<MainMenu />} />
-            <Route path="/" element={<WarningMenu />} />
-            <Route path="/about-me" element={<AboutMe />} />
-            <Route path="/technologies-view" element={<TechnologiesView />} />
-            <Route path="/work-experience" element={<WorkExperienceView />} />
-            <Route path="/linkedin-view" element={<LinkedinView />} />
-            <Route path="/credits-view" element={<CreditsView />} />
+            <Route path="/" element={isMobile ? <BmoPage /> : <WarningMenu />} />
+            <Route path="/about-me" element={isMobile ? <BmoPage /> : <AboutMe />} />
+            <Route path="/technologies-view" element={isMobile ? <BmoPage /> : <TechnologiesView />} />
+            <Route path="/work-experience" element={isMobile ? <BmoPage /> : <WorkExperienceView />} />
+            <Route path="/linkedin-view" element={isMobile ? <BmoPage /> : <LinkedinView />} />
+            <Route path="/credits-view" element={isMobile ? <BmoPage /> : <CreditsView />} />
+            <Route path="/github-view" element={<BmoPage />} />
+            <Route path="/source-view" element={<BmoPage />} />
         </Routes>
     );
 }
