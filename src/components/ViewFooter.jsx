@@ -5,8 +5,9 @@ import startButton from "../assets/svgs/start-button.svg";
 import wiiMenuButton from "../assets/svgs/wii-menu-button.svg";
 import { resumeUrl } from "../data/resume";
 
-const ViewFooter = ({ onStart, startLabel = "Press Start" }) => {
-    const StartControl = onStart ? "button" : "a";
+const ViewFooter = ({ onStart, startLabel = "Press Start", startDisabled = false }) => {
+    const isButton = Boolean(onStart) || startDisabled;
+    const StartControl = isButton ? "button" : "a";
 
     // Is screen 600px
     const isMdOrLarger = useMediaQuery({ minHeight: 600 });
@@ -27,11 +28,11 @@ const ViewFooter = ({ onStart, startLabel = "Press Start" }) => {
                 </div>
             </Link>
             <StartControl
-                className="rounded-full border-2 border-[#00C4FF] cursor-pointer transform-gpu transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-[1.04] focus-visible:-translate-y-1 focus-visible:scale-[1.04]"
-                {...(onStart
-                    ? { type: "button", onClick: onStart }
+                className="rounded-full border-2 border-[#00C4FF] cursor-pointer transform-gpu transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-[1.04] focus-visible:-translate-y-1 focus-visible:scale-[1.04] disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none"
+                {...(isButton
+                    ? { type: "button", onClick: onStart, disabled: startDisabled }
                     : { href: resumeUrl, target: "_blank", rel: "noopener noreferrer" })}
-                aria-label={onStart ? startLabel : "View resume (PDF, opens in a new tab)"}
+                aria-label={isButton ? startLabel : "View resume (PDF, opens in a new tab)"}
             >
                 <img
                     src={startButton}
@@ -46,6 +47,7 @@ const ViewFooter = ({ onStart, startLabel = "Press Start" }) => {
 ViewFooter.propTypes = {
     onStart: PropTypes.func,
     startLabel: PropTypes.string,
+    startDisabled: PropTypes.bool,
 };
 
 export default ViewFooter;

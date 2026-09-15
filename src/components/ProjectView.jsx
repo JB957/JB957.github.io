@@ -1,30 +1,82 @@
 import PropTypes from "prop-types";
+import { FaDatabase, FaHardHat, FaTerminal, FaRocket } from "react-icons/fa";
 import ProjectIcon from "./ProjectIcon";
 import ViewFooter from "./ViewFooter";
-import { resumeUrl } from "../data/resume";
+import "./ProjectThemes.css";
+
+const contributionIcons = [FaDatabase, FaTerminal, FaRocket];
 
 export default function ProjectView({ project }) {
+    const isGoose = project.icon === "goose";
+    const isHermes = project.icon === "engine";
     const openRepository = () => window.open(project.href, "_blank", "noopener,noreferrer");
+
     return (
-        <div className={`min-h-screen bg-gradient-to-br ${project.color} text-white`}>
-            <main className="mx-auto flex max-w-4xl flex-col items-center px-8 pt-12 pb-[max(12rem,18vw)] text-center">
-                <ProjectIcon icon={project.icon} className="mb-6 text-7xl" />
-                <p className="mb-4 rounded-full border border-white/40 px-5 py-2 font-sans text-lg">{project.organization} · {project.role}</p>
-                <h1 className="mb-4 font-rodin text-5xl font-bold">{project.title}</h1>
-                <h2 className="mb-6 font-sans text-2xl">{project.category}</h2>
-                <p className="mb-5 font-sans text-sm text-white/80">{[project.period, project.status].filter(Boolean).join(" · ")}</p>
-                <p className="max-w-2xl font-sans text-xl leading-relaxed">{project.description}</p>
-                <section className="mt-7 max-w-2xl text-left font-sans">
-                    <h2 className="text-xl font-bold">What I built</h2>
-                    <ul className="mt-4 list-disc space-y-3 pl-5 text-lg leading-relaxed">{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
+        <div className={`project-stage project-${project.icon}`}>
+            <main className="project-content">
+                {isGoose ? (
+                    <div className="construction-banner"><FaHardHat aria-hidden="true" /> Under construction <span>Work in progress</span></div>
+                ) : (
+                    <div className="project-brandbar">
+                        <span>{isHermes ? "RITSEC / COMPETITION SYSTEMS" : "RITSEC / COMMUNITY TOOLS"}</span>
+                        <a href={isHermes ? "https://ists.io/" : "https://ritsec.club/"} target="_blank" rel="noopener noreferrer">{isHermes ? "ISTS" : "ritsec.club"} ↗</a>
+                    </div>
+                )}
+
+                <header className="project-hero">
+                    <div className="project-introduction">
+                        <p className="project-eyebrow">{isGoose ? "Personal project / Rust" : `${project.organization} · ${project.role}`}</p>
+                        <h1>{isHermes ? "HERMES" : project.title}</h1>
+                        <p className="project-subtitle">{isHermes ? "The scoring engine behind the competition." : isGoose ? "A little detective. A worksite full of ideas." : "Security through community. One bot at a time."}</p>
+                        {isHermes && <div className="team-badges"><span className="red-team">Red team</span><span aria-hidden="true">×</span><span className="blue-team">Blue team</span></div>}
+                    </div>
+                    {isGoose ? (
+                        <div className="goose-worksite" aria-label="Detective Goose walking through a construction site">
+                            <svg className="worksite-crane" viewBox="0 0 300 230" aria-hidden="true">
+                                <g fill="none" stroke="#ae772d" strokeWidth="7" strokeLinejoin="round">
+                                    <path d="M200 215V25H32L200 6L272 25H200M184 215L216 175L184 135L216 95L184 55M184 25V215M216 25V215M32 25V72M265 25V150" />
+                                    <path d="M256 150V163Q267 174 276 161" />
+                                </g>
+                            </svg>
+                            <div className="worksite-goose"><ProjectIcon icon="goose" /></div>
+                            <div className="worksite-cone cone-one" aria-hidden="true" />
+                            <div className="worksite-cone cone-two" aria-hidden="true" />
+                            <div className="worksite-ground" aria-hidden="true" />
+                        </div>
+                    ) : <div className="project-hero-logo"><ProjectIcon icon={project.icon} /></div>}
+                </header>
+
+                <p className="project-description">{project.description}</p>
+
+                {isHermes && <section className="hermes-pipeline" aria-label="What Hermes connects">
+                    <div><span>01 / CHECK</span><h2>Scoring checks</h2><p>Go services for the competition.</p></div>
+                    <div><span>02 / CONNECT</span><h2>Competition APIs</h2><p>Scoring and inject workflows.</p></div>
+                    <div><span>03 / COMPETE</span><h2>Team interfaces</h2><p>Tools for competitors and admins.</p></div>
+                </section>}
+
+                {isGoose && <section className="construction-notice" aria-labelledby="construction-status">
+                    <FaHardHat aria-hidden="true" />
+                    <div><h2 id="construction-status">In progress</h2><p>{project.repositoryNote}</p></div>
+                </section>}
+
+                <section className="project-contributions">
+                    <h2>{isGoose ? "On the workbench" : isHermes ? "Building the engine" : "Built for the RITSEC community"}</h2>
+                    {project.icon === "ritsec" ? <div className="obiii-contributions">
+                        {project.highlights.map((highlight, index) => {
+                            const Icon = contributionIcons[index % contributionIcons.length];
+                            return <article key={highlight}><Icon aria-hidden="true" /><p>{highlight}</p></article>;
+                        })}
+                    </div> : <ul>{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>}
                 </section>
-                <ul className="mt-6 flex flex-wrap justify-center gap-2" aria-label="Project technologies">
-                    {project.technologies.map((technology) => <li key={technology} className="rounded-full border border-white/40 px-4 py-2 font-sans text-sm">{technology}</li>)}
-                </ul>
-                <a className="mt-8 rounded-full border-2 border-white bg-white px-8 py-3 font-sans text-lg font-bold text-slate-900 transition-colors hover:bg-sky-100 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-sky-300" href={project.href || resumeUrl} target="_blank" rel="noopener noreferrer">{project.href ? "View repository" : "View resume (PDF)"} ↗</a>
-                <p className="mt-5 font-sans text-sm text-white/80">Press Start to open {project.href ? "the repository" : "my resume"}.</p>
+
+                <div className="project-bottom">
+                    <ul className="project-stack" aria-label="Project technologies">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                    <p className="project-period">{[project.period, project.status].filter(Boolean).join(" · ")}</p>
+                </div>
+                {project.href && <a className="project-repository" href={project.href} target="_blank" rel="noopener noreferrer">View repository ↗</a>}
+                <p className="project-hint">{isGoose ? "More to come. The goose is still on the job." : "Press Start to open the repository."}</p>
             </main>
-            <ViewFooter onStart={project.href ? openRepository : undefined} startLabel="Open project repository" />
+            <ViewFooter onStart={project.href ? openRepository : undefined} startDisabled={!project.href} startLabel={project.href ? "Open project repository" : "GitHub repository available once the project is finished"} />
         </div>
     );
 }
@@ -33,14 +85,13 @@ ProjectView.propTypes = {
     project: PropTypes.shape({
         icon: PropTypes.string.isRequired,
         organization: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired,
         role: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         href: PropTypes.string,
         period: PropTypes.string,
         status: PropTypes.string.isRequired,
+        repositoryNote: PropTypes.string,
         highlights: PropTypes.arrayOf(PropTypes.string).isRequired,
         technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,

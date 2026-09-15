@@ -13,7 +13,7 @@ import avatar from "../assets/Jpegs/Me.png";
 import "./BmoMenu.css";
 
 const pages = {
-    ...Object.fromEntries(projects.map((project) => [project.path, { ...project, href: project.href || resumeUrl, action: project.href ? "OPEN" : "CV", external: true }])),
+    ...Object.fromEntries(projects.map((project) => [project.path, { ...project, action: project.href ? "OPEN" : "WIP", external: true }])),
     "/": { title: "Hello, friend!", action: "PLAY", href: "/main-menu" },
     "/about-me": { title: "About me", action: "CV", href: resumeUrl, external: true },
     "/work-experience": { title: "Experience", action: "CV", href: resumeUrl, external: true },
@@ -100,11 +100,12 @@ export default function BmoPage() {
                     {pathname === "/github-view" && <><div className="bmo-face" aria-hidden="true">{'{ }'}</div><h2>JB957 on GitHub</h2><p>Explore my repositories, projects, and code.</p></>}
                     {pathname === "/source-view" && <><div className="bmo-face" aria-hidden="true">{'</>'}</div><h2>Behind the portfolio</h2><p>Browse the source code for this website on GitHub.</p><p>Built with React and styled with Tailwind CSS.</p></>}
                     {project && <article className="bmo-card">
-                        {project.icon === "goose" && <ProjectIcon icon={project.icon} className="mx-auto mb-4 text-6xl" />}
+                        <div className="bmo-project-icon"><ProjectIcon icon={project.icon} className="text-5xl" /></div>
                         <span className="bmo-date">{project.organization} · {project.role}</span>
                         <h2>{project.category}</h2>
                         <p className="bmo-date">{[project.period, project.status].filter(Boolean).join(" · ")}</p>
                         <p>{project.description}</p>
+                        {project.repositoryNote && <p className="bmo-project-notice">{project.repositoryNote}</p>}
                         <h2>What I built</h2>
                         <ul className="bmo-highlights">{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
                         <ul className="bmo-tags" aria-label="Project technologies">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
@@ -113,7 +114,7 @@ export default function BmoPage() {
                     {page.href && (page.external ? <a className="bmo-page-link" ref={actionLink} href={page.href} target="_blank" rel="noopener noreferrer">{page.action === "CV" ? "View resume (PDF)" : project ? "View repository" : page.action === "CODE" ? "Explore GitHub" : `Open ${page.title}`} ↗</a> : <Link className="bmo-page-link" ref={actionLink} to={page.href}>Let’s play →</Link>)}
                 </section>
                 <div className="bmo-slot-row" aria-hidden="true"><div className="bmo-slot" /><div className="bmo-light" /></div>
-                <BmoControls onPrevious={() => scroll(-1)} onNext={() => scroll(1)} onBack={() => navigate("/main-menu")} onTop={top} onAction={activate} actionText={actionText} actionLabel={isCredits ? `${playing ? "Pause" : "Play"} credits` : page.action === "CV" ? "Open resume" : `Open ${page.title}`} />
+                <BmoControls onPrevious={() => scroll(-1)} onNext={() => scroll(1)} onBack={() => navigate("/main-menu")} onTop={top} onAction={activate} actionText={actionText} actionDisabled={page.action === "WIP"} actionLabel={isCredits ? `${playing ? "Pause" : "Play"} credits` : page.action === "WIP" ? "GitHub repository available once the project is finished" : page.action === "CV" ? "Open resume" : `Open ${page.title}`} />
                 <div className="bmo-bottom"><div className="bmo-speakers" aria-hidden="true"><i /><i /></div><span>BMO</span></div>
                 <p className="bmo-hint">D-pad: scroll · △: menu · Green: top · Red: {actionText.toLowerCase()}</p>
             </div>

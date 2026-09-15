@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function BmoControls({ onPrevious, onNext, onAction, actionLabel, actionText = "GO", onBack, onTop }) {
+export default function BmoControls({ onPrevious, onNext, onAction, actionLabel, actionText = "GO", onBack, onTop, actionDisabled = false }) {
     return (
         <div className="bmo-controls">
             <div className="bmo-dpad" role="group" aria-label="Menu navigation">
@@ -15,7 +15,7 @@ export default function BmoControls({ onPrevious, onNext, onAction, actionLabel,
                     <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M30 5 L56 53 H4 Z" fill="#22d7e5" stroke="#102f2a" strokeWidth="2" /></svg>
                 </button>
                 <button className="bmo-green" onClick={onTop || onNext} aria-label={onTop ? "Scroll to top" : "Next menu item"} />
-                <button className="bmo-select" onClick={onAction} aria-label={actionLabel}><span>{actionText}</span></button>
+                <button className="bmo-select" onClick={onAction} aria-label={actionLabel} disabled={actionDisabled}><span>{actionText}</span></button>
             </div>
         </div>
     );
@@ -29,4 +29,5 @@ BmoControls.propTypes = {
     actionText: PropTypes.string,
     onBack: PropTypes.func,
     onTop: PropTypes.func,
+    actionDisabled: PropTypes.bool,
 };

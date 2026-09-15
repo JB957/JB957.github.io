@@ -1,0 +1,24 @@
+.goose-sprite {
+    display: inline-block;
+    width: 1.5em;
+    aspect-ratio: 150 / 144;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-size: 965.333333% 754.166667%;
+    background-position: 33.898305% .849257%;
+    image-rendering: pixelated;
+    animation: goose-walk .72s steps(1, end) infinite;
+}
+
+/* Four right-facing frames in the supplied 1448 × 1086 sheet.
+   The 150 × 144 viewports start at x=440,600,760,920 and y=8. */
+@keyframes goose-walk {
+    0%, 100% { background-position: 33.898305% .849257%; }
+    25% { background-position: 46.224961% .849257%; }
+    50% { background-position: 58.551618% .849257%; }
+    75% { background-position: 70.878274% .849257%; }
+}
+.ritsec-project-logo { display: inline-block; width: 3.2em; height: 1.2em; object-fit: contain; }
+@media (prefers-reduced-motion: reduce) {
+    .goose-sprite { animation: none; }
+}

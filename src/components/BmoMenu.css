@@ -86,3 +86,7 @@
 .bmo-page-link { display: block; padding: 12px; margin-top: 20px; background: #00ef8d; color: #153b33; font-weight: bold; text-align: center; }
 .bmo-face { text-align: center; color: #00ef8d; font-size: 64px; padding: 10px 0; }
 .bmo-credits-text { white-space: pre-wrap; text-align: center; font-size: 16px; line-height: 1.9; color: #00ef8d; }
+.bmo-project-icon { display: flex; justify-content: center; color: #00ef8d; margin: 0 0 18px; }
+.bmo-project-icon .goose-sprite, .bmo-project-icon .ritsec-project-logo, .bmo-avatar { filter: grayscale(1) sepia(1) hue-rotate(85deg) saturate(2.6); }
+.bmo-project-notice { border: 1px dashed #00ef8d; padding: 12px; color: #00ef8d; }
+.bmo-select:disabled { cursor: not-allowed; opacity: .65; }
