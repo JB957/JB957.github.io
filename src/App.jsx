@@ -3,10 +3,9 @@ import ProjectView from "./components/ProjectView";
 import { useMediaQuery } from "react-responsive";
 import BmoPage from "./components/BmoPage";
 // App.jsx
-import { Route, Routes } from "react-router-dom"; // Importa Routes
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import MainMenu from "./components/MainMenu";
-import WarningMenu from "./components/WarningMenu";
 import AboutMe from "./components/AboutMe";
 import TechnologiesView from "./components/TechnologiesView";
 import WorkExperienceView from "./components/WorkExperienceView";
@@ -18,7 +17,7 @@ function App() {
     return (
         <Routes>
             <Route path="/main-menu" element={<MainMenu />} />
-            <Route path="/" element={isMobile ? <BmoPage /> : <WarningMenu />} />
+            <Route path="/" element={<Navigate to="/main-menu" replace />} />
             <Route path="/about-me" element={isMobile ? <BmoPage /> : <AboutMe />} />
             <Route path="/technologies-view" element={isMobile ? <BmoPage /> : <TechnologiesView />} />
             <Route path="/work-experience" element={isMobile ? <BmoPage /> : <WorkExperienceView />} />
