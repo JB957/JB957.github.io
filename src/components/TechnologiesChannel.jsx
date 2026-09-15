@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import reactIcon from "../assets/svgs/react.svg";
 import javaIcon from "../assets/svgs/java.svg";
 import pythonIcon from "../assets/svgs/python.svg";
-import springIcon from "../assets/svgs/spring.svg";
+import dockerIcon from "../assets/svgs/docker.svg";
 import javascriptIcon from "../assets/svgs/js.svg";
 
 const TechnologiesChannel = () => {
@@ -21,7 +21,7 @@ const TechnologiesChannel = () => {
         setShowTooltip(false);
     };
 
-    const icons = [reactIcon, javaIcon, pythonIcon, springIcon, javascriptIcon];
+    const icons = [reactIcon, javaIcon, pythonIcon, dockerIcon, javascriptIcon];
     const [currentIconIndex, setCurrentIconIndex] = useState(0);
 
     useEffect(() => {

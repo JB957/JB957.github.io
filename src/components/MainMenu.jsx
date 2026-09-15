@@ -1,4 +1,6 @@
 import { projects } from "../data/projects";
+import { resumeUrl } from "../data/resume";
+import ResumeChannel from "./ResumeChannel";
 import ProjectChannel from "./ProjectChannel";
 import EmptyChannel from "./EmptyChannel";
 import DiscChannel from "./DiscChannel";
@@ -36,21 +38,31 @@ export default function MainMenu() {
                     Wii on desktop, BMO on mobile. Open this site on your phone to try the other design!
                 </p>
                 <div className="md:flex flex-wrap xl:px-32 md:pt-4 p-3 pt-14 justify-center md:pb-24">
-                    <Link to={"/about-me"} className="md:w-1/4 md:p-[0.4vh]">
+                    <Link to={"/about-me"} className="md:w-1/4 md:p-[0.4vh]" aria-label="About Joseph Bird">
                         <DiscChannel />
                     </Link>
+                    {projects.map((project) => (
+                        <Link key={project.path} to={project.path} className="md:w-1/4 md:p-[0.4vh]" aria-label={`${project.title} — ${project.role}`}>
+                            <ProjectChannel project={project} />
+                        </Link>
+                    ))}
                     <Link
                         to={"/work-experience"}
                         className="md:w-1/4 md:p-[0.4vh]"
+                        aria-label="Professional experience"
                     >
                         <WorkExperienceChannel />
                     </Link>
                     <Link
                         to={"/technologies-view"}
                         className="md:w-1/4 md:p-[0.4vh]"
+                        aria-label="Technologies and skills"
                     >
                         <TechnologiesChannel />
                     </Link>
+                    <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="md:w-1/4 md:p-[0.4vh]" aria-label="View Joseph Bird’s resume (PDF, opens in a new tab)">
+                        <ResumeChannel />
+                    </a>
                     <Link
                         to={"/linkedin-view"}
                         className="md:w-1/4 md:p-[0.4vh]"
@@ -96,11 +108,6 @@ export default function MainMenu() {
                     >
                         <CodeChannel />
                     </Link>
-                    {projects.map((project) => (
-                        <Link key={project.path} to={project.path} className="md:w-1/4 md:p-[0.4vh]" aria-label={`${project.title} — ${project.role}`}>
-                            <ProjectChannel project={project} />
-                        </Link>
-                    ))}
                     <Link
                         to={"/credits-view"}
                         className="md:w-1/4 md:p-[0.4vh]"
@@ -109,12 +116,6 @@ export default function MainMenu() {
                     </Link>
                     {isMdOrLarger && (
                         <>
-                            <div className="md:w-1/4 md:p-[0.4vh]">
-                                <EmptyChannel />
-                            </div>
-                            <div className="md:w-1/4 md:p-[0.4vh]">
-                                <EmptyChannel />
-                            </div>
                             <div className="md:w-1/4 md:p-[0.4vh]">
                                 <EmptyChannel />
                             </div>

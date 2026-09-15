@@ -63,7 +63,7 @@ const WarningMenu = () => {
                 </div>
                 <div className="flex items-center mt-4">
                     <div className="font-rodin font-black text-xl md:text-3xl text-center text-white md:ml-4">
-                        I PERSUING A DEGREE IN CYBER SECURITY AT RIT
+                        I STUDY CYBERSECURITY AT RIT AND BUILD SOFTWARE &amp; INFRASTRUCTURE AUTOMATION.
                     </div>
                 </div>
                 <div className="flex items-center mt-24">

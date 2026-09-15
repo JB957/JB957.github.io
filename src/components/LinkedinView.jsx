@@ -103,7 +103,7 @@ const LinkedinView = () => {
             </div>
 
             <div className="mt-auto">
-                <ViewFooter onStart={openLinkedIn} />
+                <ViewFooter onStart={openLinkedIn} startLabel="Open LinkedIn profile" />
             </div>
         </div>
     );

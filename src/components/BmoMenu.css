@@ -78,6 +78,9 @@
 .bmo-avatar { width: 96px; height: 96px; object-fit: cover; border: 3px solid #00ef8d; border-radius: 16px; margin: 0 auto 16px; }
 .bmo-card { border-bottom: 1px dashed #4b8b70; padding-bottom: 18px; margin-bottom: 18px; }
 .bmo-date { color: #ffe34e; font-size: 12px; }
+.bmo-highlights { list-style: disc; padding-left: 20px; margin-top: 12px; font-size: 14px; line-height: 1.7; }
+.bmo-highlights li + li { margin-top: 10px; }
+.bmo-project-links a { display: block; padding: 12px 0; color: #00ef8d; text-decoration: underline; text-underline-offset: 4px; }
 .bmo-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; list-style: none; }
 .bmo-tags li { padding: 5px 8px; border: 1px solid #4b8b70; font-size: 13px; border-radius: 4px; }
 .bmo-page-link { display: block; padding: 12px; margin-top: 20px; background: #00ef8d; color: #153b33; font-weight: bold; text-align: center; }

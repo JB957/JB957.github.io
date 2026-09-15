@@ -67,14 +67,14 @@ const DiscChannel = () => {
                     </div>}
                     <img
                         src={avatar}
-                        alt="Avatar"
+                        alt="Joseph Bird"
                         className="md:w-[6.5vw] w-20 rounded-full shadow-lg z-30 pt-1"
                     />
 
-                    {/* Renderizar el texto "About Tobias" solo si la altura de la pantalla es mayor a 720px */}
+                    {/* Show the name when the screen has room for a label. */}
                     {isTallerThan800 && (
                         <p className="font-serif font-bold md:text-base lg:text-base xl:text-xl text-lg text-center items-center justify-center mt-4 bg-white md:px-[3vw] px-5 rounded-full shadow-md z-30">
-                            About Tobias
+                            About Joseph
                         </p>
                     )}
                 </div>

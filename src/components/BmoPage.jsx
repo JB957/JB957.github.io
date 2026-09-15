@@ -3,29 +3,26 @@ import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import BmoControls from "./BmoControls";
-import { aboutText } from "../data/aboutText";
+import ProjectIcon from "./ProjectIcon";
+import { aboutText, education, engineeringText, focusAreas, headline } from "../data/aboutText";
 import { workExperiences } from "../data/workExperiences";
+import { technologies } from "../data/technologies";
+import { resumeUrl } from "../data/resume";
 import { crawlText } from "../data/creditsText";
 import avatar from "../assets/Jpegs/Me.png";
 import "./BmoMenu.css";
 
 const pages = {
-    ...Object.fromEntries(projects.map((project) => [project.path, { ...project, action: "OPEN", external: true }])),
+    ...Object.fromEntries(projects.map((project) => [project.path, { ...project, href: project.href || resumeUrl, action: project.href ? "OPEN" : "CV", external: true }])),
     "/": { title: "Hello, friend!", action: "PLAY", href: "/main-menu" },
-    "/about-me": { title: "About me", action: "CV", href: "/cv.pdf", external: true },
-    "/work-experience": { title: "Experience", action: "CV", href: "/cv.pdf", external: true },
+    "/about-me": { title: "About me", action: "CV", href: resumeUrl, external: true },
+    "/work-experience": { title: "Experience", action: "CV", href: resumeUrl, external: true },
     "/technologies-view": { title: "Technologies", action: "CODE", href: "https://github.com/JB957", external: true },
     "/linkedin-view": { title: "LinkedIn", action: "OPEN", href: "https://www.linkedin.com/in/joey-bird957", external: true },
     "/github-view": { title: "GitHub", action: "OPEN", href: "https://github.com/JB957", external: true },
     "/source-view": { title: "Source code", action: "OPEN", href: "https://github.com/JB957/JB957.github.io", external: true },
     "/credits-view": { title: "Credits", action: "PAUSE" },
 };
-const technologies = [
-    ["Languages", ["HTML", "CSS", "JavaScript", "Java", "Python"]],
-    ["Frameworks & libraries", ["React", "Ruby on Rails", "Spring"]],
-    ["Databases", ["MySQL", "PostgreSQL"]],
-    ["Tools", ["Docker", "Tailwind CSS", "Figma", "Bootstrap", "GSAP"]],
-];
 
 export default function BmoPage() {
     const { pathname } = useLocation();
@@ -86,16 +83,34 @@ export default function BmoPage() {
                 <header className="bmo-heading"><Link to="/main-menu">‹ MENU</Link><span>JOSEPH BIRD / BMO</span></header>
                 <section className="bmo-screen bmo-page-screen" ref={screen} tabIndex={0} aria-label={page.title} onTouchStart={() => setPlaying(false)} onWheel={() => setPlaying(false)}>
                     <h1>{page.title}</h1>
-                    {pathname === "/" && <><div className="bmo-face" aria-hidden="true">•‿•</div><h2>I’m Joseph Bird.</h2><p>Software developer and cybersecurity student at RIT. Welcome to my portfolio!</p><p>Tap PLAY to explore.</p></>}
-                    {pathname === "/about-me" && <><img className="bmo-avatar" src={avatar} alt="Joseph Bird" /><p>{aboutText}</p></>}
-                    {pathname === "/work-experience" && workExperiences.map((job) => <article className="bmo-card" key={job.id}><span className="bmo-date">{job.year}</span><h2>{job.company}</h2><h3>{job.position}</h3><p>{job.description}</p></article>)}
-                    {pathname === "/technologies-view" && technologies.map(([title, items]) => <article className="bmo-card" key={title}><h2>{title}</h2><ul className="bmo-tags">{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}
+                    {pathname === "/" && <><div className="bmo-face" aria-hidden="true">•‿•</div><h2>I’m Joseph Bird.</h2><p>{headline}</p><p>I build competition platforms, community tools, and infrastructure automation while studying cybersecurity at RIT.</p><p>Tap PLAY to explore my projects.</p></>}
+                    {pathname === "/about-me" && <>
+                        <img className="bmo-avatar" src={avatar} alt="Joseph Bird" />
+                        <p>{aboutText}</p>
+                        <ul className="bmo-tags" aria-label="Focus areas">{focusAreas.map((focus) => <li key={focus}>{focus}</li>)}</ul>
+                        <article className="bmo-card">
+                            <h2>What I build</h2><p>{engineeringText}</p>
+                            <ul className="bmo-project-links">{projects.map((item) => <li key={item.path}><Link to={item.path}>{item.title} →</Link></li>)}</ul>
+                        </article>
+                        <article className="bmo-card"><h2>Education & certifications</h2><h3>{education.school}</h3><p>{education.degree}</p><span className="bmo-date">{education.graduation}</span><ul className="bmo-highlights">{education.certifications.map((certification) => <li key={certification}>{certification}</li>)}</ul></article>
+                    </>}
+                    {pathname === "/work-experience" && workExperiences.map((job) => <article className="bmo-card" key={job.id}><span className="bmo-date">{job.year}</span><h2>{job.company}</h2><h3>{job.position}</h3><p>{job.description}</p>{job.highlights && <ul className="bmo-highlights">{job.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>}</article>)}
+                    {pathname === "/technologies-view" && technologies.map(({ title, description, items }) => <article className="bmo-card" key={title}><h2>{title}</h2><p>{description}</p><ul className="bmo-tags">{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}
                     {pathname === "/linkedin-view" && <><img className="bmo-avatar" src={avatar} alt="Joseph Bird" /><h2>Let’s connect.</h2><p>Visit my LinkedIn profile to learn more about my experience, projects, and professional journey.</p></>}
                     {pathname === "/github-view" && <><div className="bmo-face" aria-hidden="true">{'{ }'}</div><h2>JB957 on GitHub</h2><p>Explore my repositories, projects, and code.</p></>}
                     {pathname === "/source-view" && <><div className="bmo-face" aria-hidden="true">{'</>'}</div><h2>Behind the portfolio</h2><p>Browse the source code for this website on GitHub.</p><p>Built with React and styled with Tailwind CSS.</p></>}
-                    {project && <article className="bmo-card"><span className="bmo-date">RITSEC · {project.role}</span><h2>{project.category}</h2><p>{project.description}</p></article>}
+                    {project && <article className="bmo-card">
+                        {project.icon === "goose" && <ProjectIcon icon={project.icon} className="mx-auto mb-4 text-6xl" />}
+                        <span className="bmo-date">{project.organization} · {project.role}</span>
+                        <h2>{project.category}</h2>
+                        <p className="bmo-date">{[project.period, project.status].filter(Boolean).join(" · ")}</p>
+                        <p>{project.description}</p>
+                        <h2>What I built</h2>
+                        <ul className="bmo-highlights">{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
+                        <ul className="bmo-tags" aria-label="Project technologies">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                    </article>}
                     {isCredits && <div className="bmo-credits-text">{crawlText}</div>}
-                    {page.href && (page.external ? <a className="bmo-page-link" ref={actionLink} href={page.href} target="_blank" rel="noopener noreferrer">{project ? "View repository" : page.action === "CV" ? "View resume" : page.action === "CODE" ? "Explore GitHub" : `Open ${page.title}`} ↗</a> : <Link className="bmo-page-link" ref={actionLink} to={page.href}>Let’s play →</Link>)}
+                    {page.href && (page.external ? <a className="bmo-page-link" ref={actionLink} href={page.href} target="_blank" rel="noopener noreferrer">{page.action === "CV" ? "View resume (PDF)" : project ? "View repository" : page.action === "CODE" ? "Explore GitHub" : `Open ${page.title}`} ↗</a> : <Link className="bmo-page-link" ref={actionLink} to={page.href}>Let’s play →</Link>)}
                 </section>
                 <div className="bmo-slot-row" aria-hidden="true"><div className="bmo-slot" /><div className="bmo-light" /></div>
                 <BmoControls onPrevious={() => scroll(-1)} onNext={() => scroll(1)} onBack={() => navigate("/main-menu")} onTop={top} onAction={activate} actionText={actionText} actionLabel={isCredits ? `${playing ? "Pause" : "Play"} credits` : page.action === "CV" ? "Open resume" : `Open ${page.title}`} />

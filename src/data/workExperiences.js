@@ -1,20 +1,24 @@
 export const workExperiences = [
     {
+        id: 2,
+        year: "Jan 2026 – Aug 2026",
+        company: "FM",
+        position: "Infrastructure Engineering Co-op",
+        description: "Developed infrastructure automation across Platform Operations, Platform Shared Servers, Integrated Services, and Core Automation.",
+        highlights: [
+            "Built Ansible automation for repeatable configuration changes to F5 and VMware infrastructure.",
+            "Implemented automation solutions and repaired CI/CD workflows in GitHub Actions and Azure Pipelines.",
+            "Partnered with security teams to establish secure access controls and usage practices for Ansible Automation Platform Controller.",
+        ],
+        color: "bg-yellow-600",
+    },
+    {
         id: 1,
-        year: "Aug 22 - Sep 25",
+        year: "Aug 2022 – Sep 2025",
         company: "Fire Crust",
         position: "Manager",
         description:
-            "Managed a team of 3-5 Employees to open a store every morning and ensure effiecent and quality preperation of food.",
+            "Managed a team of 3–5 employees during daily store opening, coordinating food preparation and maintaining quality and efficiency.",
         color: "bg-green-600",
-    },
-    {
-        id: 2,
-        year: "Jan 26 - Sep 26",
-        company: "Factory Mutual Insurance Company",
-        position: "Software Engineer",
-        description:
-            "Worked full time across 4 different teams developing automation tools and applications to improve the efficiency of the company.",
-        color: "bg-yellow-600",
     },
 ];

@@ -1,4 +1,5 @@
 import { projects } from "../data/projects";
+import { resumeUrl } from "../data/resume";
 import BmoControls from "./BmoControls";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -6,12 +7,13 @@ import "./BmoMenu.css";
 
 const entries = [
     { label: "About me", to: "/about-me" },
+    ...projects.map((project) => ({ label: project.title, to: project.path })),
     { label: "Experience", to: "/work-experience" },
     { label: "Technologies", to: "/technologies-view" },
+    { label: "Resume (PDF)", to: resumeUrl, external: true },
     { label: "LinkedIn", to: "/linkedin-view" },
     { label: "GitHub", to: "/github-view" },
     { label: "Source code", to: "/source-view" },
-    ...projects.map((project) => ({ label: project.title, to: project.path })),
     { label: "Credits", to: "/credits-view" },
 ];
 
@@ -41,11 +43,12 @@ export default function BmoMenu() {
             <div className="bmo-console">
                 <header className="bmo-heading"><span>JOSEPH BIRD</span><span>PORTFOLIO / BMO</span></header>
                 <nav className="bmo-screen" aria-label="Portfolio pages">
-                    {entries.map((entry, index) => (
-                        <Link
+                    {entries.map((entry, index) => {
+                        const EntryLink = entry.external ? "a" : Link;
+                        return <EntryLink
                             key={entry.to}
                             ref={(node) => { links.current[index] = node; }}
-                            to={entry.to}
+                            {...(entry.external ? { href: entry.to } : { to: entry.to })}
                             target={entry.external ? "_blank" : undefined}
                             rel={entry.external ? "noopener noreferrer" : undefined}
                             className={`bmo-entry ${selected === index ? "is-selected" : ""}`}
@@ -54,8 +57,8 @@ export default function BmoMenu() {
                         >
                             <span aria-hidden="true">›</span> {entry.label}
                             {entry.external && <span className="bmo-external" aria-label="opens in a new tab">↗</span>}
-                        </Link>
-                    ))}
+                        </EntryLink>;
+                    })}
                 </nav>
                 <div className="bmo-slot-row" aria-hidden="true"><div className="bmo-slot" /><div className="bmo-light" /></div>
                 <BmoControls

@@ -51,7 +51,7 @@ const WorkExperienceView = () => {
             </div>
 
             {/* Línea de tiempo horizontal */}
-            <div className="flex-grow px-4 pb-44 md:pb-0">
+            <div className="flex-grow px-8 pb-[max(12rem,18vw)]">
                 <div className="w-full max-w-7xl mx-auto">
                     <div ref={timelineRef} className="relative">
                         {/* Línea horizontal principal */}
@@ -66,7 +66,7 @@ const WorkExperienceView = () => {
                                 <div
                                     key={exp.id}
                                     ref={(el) => experienceRefs.current[index] = el}
-                                    className="relative flex flex-col items-center group w-full md:w-1/4"
+                                    className="relative flex flex-col items-center group w-full md:flex-1 md:min-w-0"
                                     onMouseEnter={() => setHoveredItem(exp.id)}
                                     onMouseLeave={() => setHoveredItem(null)}
                                 >
@@ -84,7 +84,7 @@ const WorkExperienceView = () => {
 
                                     {/* Información de la experiencia debajo */}
                                     <div
-                                        className={`p-4 bg-white rounded-lg shadow-lg w-full max-w-sm transition-all duration-300 transform ${
+                                        className={`p-6 bg-white rounded-lg shadow-lg w-full transition-all duration-300 transform ${
                                             hoveredItem === exp.id
                                                 ? "scale-105 shadow-2xl border-2 border-amber-400"
                                                 : "border-2 border-transparent"
@@ -100,6 +100,9 @@ const WorkExperienceView = () => {
                                             <p className="text-sm text-gray-700 leading-relaxed">
                                                 {exp.description}
                                             </p>
+                                            {exp.highlights && <ul className="mt-4 list-disc space-y-3 pl-5 text-left font-sans text-sm leading-relaxed text-gray-700">
+                                                {exp.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                                            </ul>}
                                         </div>
                                     </div>
                                 </div>
