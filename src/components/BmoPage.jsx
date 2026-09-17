@@ -71,7 +71,7 @@ export default function BmoPage() {
     };
     const top = () => { setPlaying(false); screen.current.scrollTo({ top: 0, behavior: reducedMotion ? "instant" : "smooth" }); };
     const activate = () => isCredits ? setPlaying((value) => !value) : actionLink.current?.click();
-    const actionText = isCredits ? (playing ? "PAUSE" : "PLAY") : page.action;
+    const actionText = isCredits ? (playing ? "PAUSE" : "PLAY") : project?.comingSoon ? "SOON" : page.action;
 
     return (
         <main className="bmo-menu bmo-detail" onKeyDown={(event) => {
@@ -101,6 +101,10 @@ export default function BmoPage() {
                     {pathname === "/source-view" && <><div className="bmo-face" aria-hidden="true">{'</>'}</div><h2>Behind the portfolio</h2><p>Browse the source code for this website on GitHub.</p><p>Built with React and styled with Tailwind CSS.</p></>}
                     {project && <article className="bmo-card">
                         <div className="bmo-project-icon"><ProjectIcon icon={project.icon} className="text-5xl" /></div>
+                        {project.comingSoon ? <>
+                            <h2>{project.status}</h2>
+                            <p>{project.description}</p>
+                        </> : <>
                         <span className="bmo-date">{project.organization} · {project.role}</span>
                         <h2>{project.category}</h2>
                         <p className="bmo-date">{[project.period, project.status].filter(Boolean).join(" · ")}</p>
@@ -109,12 +113,13 @@ export default function BmoPage() {
                         <h2>What I built</h2>
                         <ul className="bmo-highlights">{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>
                         <ul className="bmo-tags" aria-label="Project technologies">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+                        </>}
                     </article>}
                     {isCredits && <div className="bmo-credits-text">{crawlText}</div>}
                     {page.href && (page.external ? <a className="bmo-page-link" ref={actionLink} href={page.href} target="_blank" rel="noopener noreferrer">{page.action === "CV" ? "View resume (PDF)" : project ? "View repository" : page.action === "CODE" ? "Explore GitHub" : `Open ${page.title}`} ↗</a> : <Link className="bmo-page-link" ref={actionLink} to={page.href}>Let’s play →</Link>)}
                 </section>
                 <div className="bmo-slot-row" aria-hidden="true"><div className="bmo-slot" /><div className="bmo-light" /></div>
-                <BmoControls onPrevious={() => scroll(-1)} onNext={() => scroll(1)} onBack={() => navigate("/main-menu")} onTop={top} onAction={activate} actionText={actionText} actionDisabled={page.action === "WIP"} actionLabel={isCredits ? `${playing ? "Pause" : "Play"} credits` : page.action === "WIP" ? "GitHub repository available once the project is finished" : page.action === "CV" ? "Open resume" : `Open ${page.title}`} />
+                <BmoControls onPrevious={() => scroll(-1)} onNext={() => scroll(1)} onBack={() => navigate("/main-menu")} onTop={top} onAction={activate} actionText={actionText} actionDisabled={page.action === "WIP"} actionLabel={isCredits ? `${playing ? "Pause" : "Play"} credits` : project?.comingSoon ? `${project.title} — ${project.status}` : page.action === "WIP" ? "GitHub repository available once the project is finished" : page.action === "CV" ? "Open resume" : `Open ${page.title}`} />
                 <div className="bmo-bottom"><div className="bmo-speakers" aria-hidden="true"><i /><i /></div><span>BMO</span></div>
                 <p className="bmo-hint">D-pad: scroll · △: menu · Green: top · Red: {actionText.toLowerCase()}</p>
             </div>

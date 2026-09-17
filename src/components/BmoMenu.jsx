@@ -7,7 +7,7 @@ import "./BmoMenu.css";
 
 const entries = [
     { label: "About me", to: "/about-me" },
-    ...projects.map((project) => ({ label: project.title, to: project.path })),
+    ...projects.map((project) => ({ label: project.title, to: project.path, status: project.comingSoon ? project.status : undefined })),
     { label: "Experience", to: "/work-experience" },
     { label: "Technologies", to: "/technologies-view" },
     { label: "Resume (PDF)", to: resumeUrl, external: true },
@@ -55,7 +55,7 @@ export default function BmoMenu() {
                             onFocus={() => setSelected(index)}
                             onClick={() => setSelected(index)}
                         >
-                            <span aria-hidden="true">›</span> {entry.label}
+                            <span aria-hidden="true">›</span> <span>{entry.label}{entry.status && <span className="bmo-entry-status">{entry.status}</span>}</span>
                             {entry.external && <span className="bmo-external" aria-label="opens in a new tab">↗</span>}
                         </EntryLink>;
                     })}

@@ -38,6 +38,7 @@
     text-decoration: none;
 }
 .bmo-entry.is-selected { background: #00ef8d; color: #153b33; }
+.bmo-entry-status { display: block; margin-top: 4px; font: 11px monospace; letter-spacing: 1px; }
 .bmo-external { margin-left: auto; font: 18px monospace; }
 .bmo-slot-row { display: flex; align-items: center; gap: 30px; margin: 22px 14px; }
 .bmo-slot { height: 16px; width: 75%; background: #153b33; border: 2px solid #102f2a; }

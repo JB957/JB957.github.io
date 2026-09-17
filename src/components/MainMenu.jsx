@@ -2,7 +2,6 @@ import { projects } from "../data/projects";
 import { resumeUrl } from "../data/resume";
 import ResumeChannel from "./ResumeChannel";
 import ProjectChannel from "./ProjectChannel";
-import EmptyChannel from "./EmptyChannel";
 import DiscChannel from "./DiscChannel";
 import BannerChannel from "./BannerChannel";
 import githubSvg from "../assets/svgs/github.svg";
@@ -42,7 +41,7 @@ export default function MainMenu() {
                         <DiscChannel />
                     </Link>
                     {projects.map((project) => (
-                        <Link key={project.path} to={project.path} className="md:w-1/4 md:p-[0.4vh]" aria-label={`${project.title} — ${project.role}`}>
+                        <Link key={project.path} to={project.path} className="md:w-1/4 md:p-[0.4vh]" aria-label={`${project.title} — ${project.comingSoon ? project.status : project.role}`}>
                             <ProjectChannel project={project} />
                         </Link>
                     ))}
@@ -114,13 +113,6 @@ export default function MainMenu() {
                     >
                         <CreditsChannel />
                     </Link>
-                    {isMdOrLarger && (
-                        <>
-                            <div className="md:w-1/4 md:p-[0.4vh]">
-                                <EmptyChannel />
-                            </div>
-                        </>
-                    )}
                 </div>
             </div>
             <div className="mt-auto">

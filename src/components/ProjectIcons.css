@@ -19,6 +19,7 @@
     75% { background-position: 70.878274% .849257%; }
 }
 .ritsec-project-logo { display: inline-block; width: 3.2em; height: 1.2em; object-fit: contain; }
+.weather-project-logo { display: inline-block; width: 1.4em; height: 1.4em; flex-shrink: 0; object-fit: contain; }
 @media (prefers-reduced-motion: reduce) {
     .goose-sprite { animation: none; }
 }

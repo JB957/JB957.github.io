@@ -8,7 +8,7 @@ export default function ProjectChannel({ project }) {
             <div className={`project-channel project-channel-${project.icon} channel-height`}>
                 <ProjectIcon icon={project.icon} className="text-[3vw]" />
                 <span className="project-channel-title">{project.shortName}</span>
-                <span className="project-channel-caption">{project.icon === "goose" ? "In progress · GitHub coming later" : project.icon === "engine" ? "RITSEC competition scoring engine" : "RITSEC’s community Discord bot"}</span>
+                <span className="project-channel-caption">{project.channelCaption}</span>
             </div>
         </div>
     );
@@ -18,5 +18,6 @@ ProjectChannel.propTypes = {
     project: PropTypes.shape({
         shortName: PropTypes.string.isRequired,
         icon: PropTypes.string.isRequired,
+        channelCaption: PropTypes.string.isRequired,
     }).isRequired,
 };

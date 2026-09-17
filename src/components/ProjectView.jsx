@@ -11,6 +11,20 @@ export default function ProjectView({ project }) {
     const isHermes = project.icon === "engine";
     const openRepository = () => window.open(project.href, "_blank", "noopener,noreferrer");
 
+    if (project.comingSoon) {
+        return (
+            <div className={`project-stage project-${project.icon}`}>
+                <main className="project-content project-coming-soon">
+                    <div className="project-hero-logo"><ProjectIcon icon={project.icon} /></div>
+                    <h1>{project.title}</h1>
+                    <p className="project-coming-soon-status">{project.status}</p>
+                    <p className="project-description">{project.description}</p>
+                </main>
+                <ViewFooter startDisabled startLabel={`${project.title} — ${project.status}`} />
+            </div>
+        );
+    }
+
     return (
         <div className={`project-stage project-${project.icon}`}>
             <main className="project-content">
@@ -91,6 +105,7 @@ ProjectView.propTypes = {
         href: PropTypes.string,
         period: PropTypes.string,
         status: PropTypes.string.isRequired,
+        comingSoon: PropTypes.bool,
         repositoryNote: PropTypes.string,
         highlights: PropTypes.arrayOf(PropTypes.string).isRequired,
         technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
