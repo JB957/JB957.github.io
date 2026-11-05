@@ -2,6 +2,7 @@ import { projects } from "./data/projects";
 import ProjectView from "./components/ProjectView";
 import { useMediaQuery } from "react-responsive";
 import BmoPage from "./components/BmoPage";
+import WeatherPage from "./components/WeatherPage";
 // App.jsx
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -25,8 +26,9 @@ function App() {
             <Route path="/credits-view" element={isMobile ? <BmoPage /> : <CreditsView />} />
             <Route path="/github-view" element={<BmoPage />} />
             <Route path="/source-view" element={<BmoPage />} />
+            <Route path="/weather" element={<WeatherPage />} />
             {projects.map((project) => (
-                <Route key={project.path} path={project.path} element={isMobile ? <BmoPage /> : <ProjectView project={project} />} />
+                <Route key={project.path} path={project.path} element={project.icon === "weather" ? <WeatherPage /> : isMobile ? <BmoPage /> : <ProjectView project={project} />} />
             ))}
         </Routes>
     );

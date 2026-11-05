@@ -1,0 +1,36 @@
+.coconut-weather { min-height: 100dvh; padding: 28px 16px; background: linear-gradient(#bce9f5, #eef9ed); color: #234e54; font-family: "WiiSans", sans-serif; overflow-y: auto; }
+.weather-card { max-width: 620px; margin: auto; padding: clamp(20px, 5vw, 40px); border: 2px solid #ffffff; border-radius: 28px; background: #ffffffdf; box-shadow: 0 12px 40px #28555e20; text-align: center; }
+.weather-back { display: block; text-align: left; text-decoration: underline; }
+.weather-card header { margin: 28px 0 12px; }
+.weather-eyebrow { font-size: 12px; letter-spacing: 2px; }
+.weather-card h1 { font-size: clamp(32px, 7vw, 46px); margin: 6px 0; }
+.weather-card h2 { font-size: 24px; margin: 0; }
+.coconut-scene { position: relative; height: 230px; overflow: hidden; border-radius: 24px; background: #cdeff5; }
+.weather-symbol { position: absolute; top: 14px; right: 28px; font-size: 64px; }
+.coconut-rope { position: absolute; left: calc(50% - 3px); width: 6px; height: 92px; background: repeating-linear-gradient(30deg, #a98046 0 3px, #d0ae70 3px 6px); }
+.weather-coconut { position: absolute; z-index: 1; top: 82px; left: calc(50% - 48px); width: 96px; height: 106px; border-radius: 46% 48% 44% 50%; background: repeating-linear-gradient(80deg, #0000 0 9px, #51362028 10px 12px), #966238; box-shadow: inset -14px -8px 0 #69452666; transform-origin: 50% -82px; }
+.weather-coconut i { position: absolute; width: 10px; height: 13px; background: #412b20; border-radius: 50%; top: 35px; left: 28px; }
+.weather-coconut i:nth-child(2) { left: 53px; }
+.weather-coconut i:nth-child(3) { left: 41px; top: 56px; }
+.coconut-sand { position: absolute; bottom: -26px; left: -10%; width: 120%; height: 70px; border-radius: 50%; background: #f1d5a0; }
+.coconut-cloudy, .coconut-rain { background: #c7d9df; }
+.coconut-rain .weather-coconut { box-shadow: inset -14px -8px 0 #402d2266, 3px 4px 10px #507c9780; background-color: #725335; }
+.coconut-snow .weather-coconut { border-top: 14px solid white; }
+.coconut-snow .coconut-sand { background: white; }
+.coconut-fog .weather-coconut, .coconut-fog .coconut-rope { opacity: .3; }
+.coconut-storm { background: #7e91a4; }
+.coconut-wind .weather-coconut, .coconut-storm .weather-coconut { animation: coconut-sway 2s ease-in-out infinite alternate; }
+.coconut-sign { position: relative; margin: -4px auto 24px; width: fit-content; max-width: 100%; padding: 12px 22px; border: 2px solid #bd945a; border-radius: 5px; background: #f6dfb2; color: #5b4126; font-size: 20px; }
+.weather-temperature { font-size: 48px; margin: 8px 0 0; }
+.weather-details { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 24px 0; }
+.weather-details dt { font-size: 14px; }
+.weather-details dd { margin: 4px 0 0; font-size: 20px; }
+.weather-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.weather-actions button { padding: 12px 18px; border: 1px solid #326a67; border-radius: 30px; background: #326a67; color: white; font: inherit; cursor: pointer; }
+.weather-actions button + button { background: transparent; color: #234e54; }
+.weather-actions button:disabled { opacity: .55; cursor: wait; }
+.weather-card :focus-visible { outline: 3px solid #b55b12; outline-offset: 4px; }
+.weather-privacy, .weather-card footer { font-size: 13px; line-height: 1.5; margin-top: 20px; }
+.weather-card footer a { text-decoration: underline; }
+@keyframes coconut-sway { from { transform: rotate(-12deg); } to { transform: rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .weather-coconut { animation: none !important; } }
