@@ -1,5 +1,19 @@
 export const projects = [
     {
+        path: "/good-food",
+        title: "Good Food",
+        shortName: "Good Food",
+        icon: "good-food",
+        channelCaption: "P-House at RIT · Yes, chef.",
+        organization: "Personal project",
+        role: "Developer",
+        status: "Live",
+        category: "RIT visiting chef tracker",
+        description: "Find P-House’s next visit to RIT with a fresh OBIII schedule on every reload.",
+        highlights: [],
+        technologies: [],
+    },
+    {
         path: "/hermes",
         title: "Hermes Scoring Engine",
         shortName: "Hermes",

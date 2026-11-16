@@ -4,6 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import BmoPage from "./components/BmoPage";
 import WeatherPage from "./components/WeatherPage";
 import KalshiPage from "./components/KalshiPage";
+import GoodFoodPage from "./components/GoodFoodPage";
 // App.jsx
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -29,7 +30,8 @@ function App() {
             <Route path="/source-view" element={<BmoPage />} />
             <Route path="/weather" element={<WeatherPage />} />
             <Route path="/kalshi" element={<KalshiPage />} />
-            {projects.map((project) => (
+            <Route path="/good-food" element={<GoodFoodPage />} />
+            {projects.filter((project) => project.path !== "/good-food").map((project) => (
                 <Route key={project.path} path={project.path} element={project.icon === "weather" ? <WeatherPage /> : isMobile ? <BmoPage /> : <ProjectView project={project} />} />
             ))}
         </Routes>

@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
         kalshi: fileURLToPath(new URL('./kalshi/index.html', import.meta.url)),
+        goodFood: fileURLToPath(new URL('./good-food/index.html', import.meta.url)),
       },
     },
   },
